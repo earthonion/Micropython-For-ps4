@@ -20,8 +20,9 @@ to access the repl use netcat:
 
 ## building 
 
-Make sure you have the Open Orbis SDK installed and in your path:
+Make sure you have the OpenOrbis toolchain installed and in your path:
 https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain
 
 then on a Linux system just run `make`
+
 
