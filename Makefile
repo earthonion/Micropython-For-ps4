@@ -23,8 +23,8 @@ COMMONDIR   := $(TOOLCHAIN)/samples/_common
 INTDIR      := $(PROJDIR)/x64/Debug
 
 # Define objects to build
-CFILES      := $(wildcard $(PROJDIR)/*.c)
-CPPFILES    := $(wildcard $(PROJDIR)/*.cpp)
+CFILES      := $(wildcard *.c)
+CPPFILES    := $(wildcard *.cpp)
 
 # MicroPython source files
 MP_PORT_FILES := $(wildcard micropython_embed/port/*.c)
@@ -36,8 +36,8 @@ MP_SHARED_FILES := $(wildcard micropython_embed/shared/runtime/*.c)
 ALL_CFILES := $(CFILES) $(MP_PORT_FILES) $(MP_PY_FILES) $(MP_SHARED_FILES)
 
 # Create object files
-OBJS        := $(patsubst $(PROJDIR)/%.c, $(INTDIR)/%.o, $(CFILES)) \
-               $(patsubst $(PROJDIR)/%.cpp, $(INTDIR)/%.o, $(CPPFILES)) \
+OBJS        := $(patsubst %.c, $(INTDIR)/%.o, $(CFILES)) \
+               $(patsubst %.cpp, $(INTDIR)/%.o, $(CPPFILES)) \
                $(patsubst micropython_embed/%.c, $(INTDIR)/micropython_embed/%.o, $(MP_PORT_FILES) $(MP_PY_FILES) $(MP_SHARED_FILES))
 
 # Define final C/C++ flags
@@ -93,10 +93,10 @@ eboot.bin: $(INTDIR) $(OBJS)
 	$(LD) $(INTDIR)/*.o $(INTDIR)/micropython_embed/port/*.o $(INTDIR)/micropython_embed/py/*.o $(INTDIR)/micropython_embed/shared/runtime/*.o -o $(INTDIR)/$(PROJDIR).elf $(LDFLAGS)
 	$(TOOLCHAIN)/bin/$(CDIR)/create-fself -in=$(INTDIR)/$(PROJDIR).elf -out=$(INTDIR)/$(PROJDIR).oelf --eboot "eboot.bin" --paid 0x3800000000000011
 
-$(INTDIR)/%.o: $(PROJDIR)/%.c
+$(INTDIR)/%.o: %.c
 	$(CC) $(CFLAGS) -o $@ $<
 
-$(INTDIR)/%.o: $(PROJDIR)/%.cpp
+$(INTDIR)/%.o: %.cpp
 	$(CCX) $(CXXFLAGS) -o $@ $<
 
 $(INTDIR)/micropython_embed/%.o: micropython_embed/%.c
