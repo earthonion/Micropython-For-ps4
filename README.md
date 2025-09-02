@@ -17,3 +17,11 @@ to access the repl use netcat:
 - [ ] File system access
 - [ ] Multiple simultaneous connections
 - [ ] Graphics and controller APIs
+
+## building 
+
+Make sure you have the Open Orbis SDK installed and in your path:
+https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain
+
+then on a Linux system just run `make`
+
