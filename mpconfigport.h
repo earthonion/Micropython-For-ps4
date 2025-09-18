@@ -23,6 +23,9 @@
 #define MICROPY_PY_URE                          (1)
 #define MICROPY_PY_STRUCT                       (1)
 #define MICROPY_PY_BINASCII                     (1)
+//networking
+#define MICROPY_PY_USELECT                      (1)
+#define MICROPY_PY_USOCKET                      (1)
 
 void mp_embed_write(const char *str, size_t len);
 #define MP_PLAT_PRINT_STRN(str, len) mp_embed_write(str, output)
